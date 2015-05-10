@@ -22,15 +22,23 @@ def test_root(app):
     app.router.add_route("GET", "/", handle_hello_world)
 
 
+HTTP_CONFIG = """
+[aio:commands]
+run: aio.app.cmd.cmd_run
+
+[server:test]
+factory: aio.http.server.http_server
+root: aio.http.tests.test_server.test_root
+address: 0.0.0.0
+port: 7070
+"""
+
 class HttpServerTestCase(AioAppTestCase):
 
     @aiofuturetest(sleep=2)
     def test_http_server(self):
         yield from runner(
-            ['run'],
-            configfile=os.path.join(
-                TEST_DIR,
-                "resources", "test-1.conf"))
+            ['run'], config_string=HTTP_CONFIG)
 
         @asyncio.coroutine
         def _test():
