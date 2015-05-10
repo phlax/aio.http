@@ -1,7 +1,7 @@
 import asyncio
 
 from zope.dottedname.resolve import resolve
-import aiohttp
+import aiohttp.web
 
 import aio.app
 
