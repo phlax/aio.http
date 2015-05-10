@@ -24,7 +24,7 @@ def test_root(app):
 
 class HttpServerTestCase(AioAppTestCase):
 
-    @aiofuturetest
+    @aiofuturetest(sleep=2)
     def test_http_server(self):
         yield from runner(
             ['run'],
