@@ -69,3 +69,11 @@ And run the test
 
   >>> response.body
   b'Hello, world'
+
+The server object is accessible from the aio.app.servers[{name}] var
+
+  >>> import aio.app
+  >>> aio.app.servers['test']
+  <Server sockets=[<socket.socket ... laddr=('0.0.0.0', 7070)>]>
+
+  >>> aio.app.clear()

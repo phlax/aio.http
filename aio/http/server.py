@@ -19,5 +19,5 @@ def http_server(name, address, port):
     srv = yield from loop.create_server(
         app.make_handler(),
         address, port)
-    log.info("Server(%s) started at http://127.0.0.1:%s" % (name, port))
+    log.info("Server(%s) started at http://%s:%s" % (name, address, port))
     return srv
