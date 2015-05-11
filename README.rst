@@ -26,14 +26,16 @@ Create a config defining a factory method and a root handler
   ... port: 7070
   ... """  
 
-Runnig
-------
+Running
+-------
 
 Run with the aio command
 
   # aio run
 
 
+See http://github.com/phlax/aio.app for more information on the "aio run" command
+  
 Running the app
 ---------------
 
