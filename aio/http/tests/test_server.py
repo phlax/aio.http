@@ -34,11 +34,14 @@ class HttpServerTestCase(AioAppTestCase):
     
     @aiofuturetest(sleep=2)
     def test_http_server(self):
-        yield from runner(
+        
+        res = yield from runner(
             ['run'], config_string=HTTP_CONFIG)
-
+        
         @asyncio.coroutine
         def _test():
+            self.assertTrue(
+                "test" in aio.app.servers)
             response = yield from aiohttp.request(
                 'GET', "http://localhost:7071")
             self.assertEqual(
