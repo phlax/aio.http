@@ -77,3 +77,6 @@ The server object is accessible from the aio.app.servers[{name}] var
   <Server sockets=[<socket.socket ... laddr=('0.0.0.0', 7070)>]>
 
   >>> aio.app.clear()
+
+  >>> aio.app.servers
+  {}
