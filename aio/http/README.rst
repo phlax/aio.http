@@ -65,7 +65,7 @@ Lets run an async test to get the default http response
 And run the test
 
   >>> from aio.testing import aiofuturetest
-  >>> aiofuturetest(run_future_app, timeout=5, sleep=5)()  
+  >>> aiofuturetest(run_future_app, timeout=5, sleep=2)()  
 
   >>> response.body
   b'Hello, world'

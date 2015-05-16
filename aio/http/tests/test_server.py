@@ -17,7 +17,7 @@ run: aio.app.cmd.cmd_run
 factory: aio.http.server.http_server
 root: aio.http.tests.test_server.test_root
 address: 0.0.0.0
-port: 7070
+port: 7071
 """
 
 @asyncio.coroutine
@@ -31,8 +31,8 @@ def test_root(webapp):
 
 
 class HttpServerTestCase(AioAppTestCase):
-
-    @aiofuturetest(sleep=5)
+    
+    @aiofuturetest(sleep=2)
     def test_http_server(self):
         yield from runner(
             ['run'], config_string=HTTP_CONFIG)
@@ -40,7 +40,7 @@ class HttpServerTestCase(AioAppTestCase):
         @asyncio.coroutine
         def _test():
             response = yield from aiohttp.request(
-                'GET', "http://localhost:7070")
+                'GET', "http://localhost:7071")
             self.assertEqual(
                 response.status, 200)
             body = yield from response.read()
