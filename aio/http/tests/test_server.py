@@ -32,7 +32,7 @@ def test_root(webapp):
 
 class HttpServerTestCase(AioAppTestCase):
 
-    @aiofuturetest(sleep=2)
+    @aiofuturetest(sleep=5)
     def test_http_server(self):
         yield from runner(
             ['run'], config_string=HTTP_CONFIG)
