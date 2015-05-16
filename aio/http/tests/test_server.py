@@ -41,10 +41,10 @@ class HttpServerTestCase(AioAppTestCase):
         def _test():
             response = yield from aiohttp.request(
                 'GET', "http://localhost:7070")
-            self.assertEquals(
+            self.assertEqual(
                 response.status, 200)
             body = yield from response.read()
-            self.assertEquals(
+            self.assertEqual(
                 body, b"Hello, world")
 
         return _test
