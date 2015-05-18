@@ -1,14 +1,6 @@
-========
-aio.http
-========
+aio.http usage
+==============
 
-
-Installation
-------------
-
-Install with:
-
-  pip install aio.http
 
 Configuration
 -------------
@@ -55,6 +47,7 @@ The server object is accessible from the aio.app.servers[{name}] var
   >>> import aio.app
   >>> aio.app.servers['test']
   <Server sockets=[<socket.socket...laddr=('0.0.0.0', 7070)...]>
+
 
 Lets clear the app
 
