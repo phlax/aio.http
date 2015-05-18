@@ -28,7 +28,7 @@ long_description = (
     + read("README.rst")
     + '\n'
     + '\n'
-    + read("aio", "app", "README.rst")
+    + read("aio", "http", "README.rst")
     + '\n')    
 
 
