@@ -28,7 +28,7 @@ Create a config defining a factory method and a root handler
 Running an http server
 ----------------------
 
-By default the http server will respond with a 404 as there's no routes set up
+By default the http server will respond with a 404 as there are no routes set up
 
   >>> import asyncio
   >>> import aiohttp
@@ -98,7 +98,8 @@ The function should be a coroutine and is called with the name of the server
   ...     def _test_http_server():
   ...         result = yield from (
   ...             yield from aiohttp.request(
-  ...                "GET", "http://localhost:7070")).read()  
+  ...                "GET", "http://localhost:7070")).read()
+  ... 
   ...         print(result)
   ... 
   ...     return _test_http_server
