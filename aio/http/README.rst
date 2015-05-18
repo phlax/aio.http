@@ -21,19 +21,8 @@ Create a config defining a factory method and a root handler
   ... 
   ... [server:test]
   ... factory: aio.http.server
-  ... address: 0.0.0.0
   ... port: 7070
   ... """  
-
-Running
--------
-
-Run with the aio command
-
-  # aio run
-
-
-See http://github.com/phlax/aio.app for more information on the "aio run" command
 
 
 Running an http server
@@ -65,7 +54,7 @@ The server object is accessible from the aio.app.servers[{name}] var
 
   >>> import aio.app
   >>> aio.app.servers['test']
-  <Server sockets=[<socket.socket ... laddr=('0.0.0.0', 7070)>]>
+  <Server sockets=[<socket.socket...laddr=('0.0.0.0', 7070)...]>
 
 Lets clear the app
 
@@ -99,7 +88,6 @@ The function should be a coroutine and is called with the name of the server
   ... [server:test]
   ... factory: aio.http.server
   ... protocol: aio.http.tests._test_http_protocol
-  ... address: 0.0.0.0
   ... port: 7070
   ... """  
   
@@ -120,5 +108,4 @@ The function should be a coroutine and is called with the name of the server
   b'Hello, world'
 
   >>> del aio.http.tests._test_http_protocol
-
   >>> aio.app.clear()
