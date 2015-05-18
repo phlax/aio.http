@@ -31,12 +31,12 @@ Example configuration for a hello world server
 .. code:: ini
 
 	  [aio:commands]
-	  run: aio.app.cmd.cmd_run
+	  run = aio.app.cmd.cmd_run
 
 	  [server:test]
-	  factory: aio.http.server
-	  protocol: my.example.protocol_factory
-	  port: 8080
+	  factory = aio.http.server
+	  protocol = my.example.protocol_factory
+	  port = 8080
 
 
 And the corresponding protocol_factory
