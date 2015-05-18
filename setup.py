@@ -5,7 +5,7 @@ import os
 import sys
 from setuptools import setup, find_packages
 
-version = '0.0.1'
+version = '0.0.2'
 
 install_requires = [
     'setuptools',
@@ -26,10 +26,15 @@ long_description = (
     + '**********************\n'
     + '\n'
     + read("README.rst")
-    + '\n'
-    + '\n'
-    + read("aio", "http", "README.rst")
-    + '\n')    
+    + '\n')
+
+try:
+    long_description += (
+        '\n'
+        + read("aio", "http", "README.rst")
+        + '\n')    
+except FileNotFoundError:
+    pass
 
 
 setup(
@@ -51,7 +56,7 @@ setup(
     packages=find_packages(),
     namespace_packages=['aio'],
     include_package_data=True,
-    package_data={'': ['README.rst']},    
+    package_data={'': ['README.rst', 'aio/http/README.rst']},    
     zip_safe=False,
     tests_require=tests_require,
     install_requires=install_requires,
