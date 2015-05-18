@@ -4,7 +4,7 @@ aio.http
 import sys
 from setuptools import setup, find_packages
 
-from aio.http import __version__ as version
+version = '0.0.1'
 
 install_requires = [
     'setuptools',
