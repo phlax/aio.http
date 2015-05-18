@@ -58,7 +58,7 @@ By default the http server will respond with a 404 as there's no routes set up
   ...     return _test_http_server
 
   >>> from aio.testing import aiofuturetest
-  >>> aiofuturetest(run_http_server, timeout=5, sleep=2)()  
+  >>> aiofuturetest(run_http_server, timeout=1, sleep=1)()  
   b'404: Not Found'
 
 The server object is accessible from the aio.app.servers[{name}] var
@@ -70,8 +70,6 @@ The server object is accessible from the aio.app.servers[{name}] var
 Lets clear the app
 
   >>> aio.app.clear()
-  >>> aio.app.servers
-  {}
   
 
 Running the server with a custom protocol
@@ -118,11 +116,9 @@ The function should be a coroutine and is called with the name of the server
   ...     return _test_http_server
   
 
-  >>> aiofuturetest(run_http_server, timeout=5, sleep=10)()  
+  >>> aiofuturetest(run_http_server, timeout=1, sleep=1)()  
   b'Hello, world'
 
   >>> del aio.http.tests._test_http_protocol
 
   >>> aio.app.clear()
-  >>> aio.app.servers
-  {}
