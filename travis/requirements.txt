@@ -1,2 +1,1 @@
 aio.testing
-git+https://github.com/phlax/aio.app.git#egg=aio.app
