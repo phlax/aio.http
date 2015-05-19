@@ -8,8 +8,8 @@ Configuration
 Create a config defining a factory method and a root handler
 
   >>> config = """
-  ... [aio:commands]
-  ... run: aio.app.cmd.cmd_run
+  ... [aio]
+  ... log_level = ERROR
   ... 
   ... [server:test]
   ... factory: aio.http.server
@@ -45,9 +45,9 @@ By default the http server will respond with a 404 as there are no routes set up
 The server object is accessible from the aio.app.servers[{name}] var
 
   >>> import aio.app
+  
   >>> aio.app.servers['test']
   <Server sockets=[<socket.socket...laddr=('0.0.0.0', 7070)...]>
-
 
 Lets clear the app
 
@@ -75,8 +75,8 @@ The function should be a coroutine and is called with the name of the server
   >>> aio.http.tests._test_http_protocol = asyncio.coroutine(http_protocol_factory)
   
   >>> config_with_protocol = """
-  ... [aio:commands]
-  ... run: aio.app.cmd.cmd_run
+  ... [aio]
+  ... log_level = ERROR
   ... 
   ... [server:test]
   ... factory: aio.http.server
