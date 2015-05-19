@@ -1,9 +1,6 @@
 import asyncio
 
-from zope.dottedname.resolve import resolve
 import aiohttp.web
-
-import aio.app
 
 import logging
 log = logging.getLogger("aio.http")
@@ -11,10 +8,10 @@ log = logging.getLogger("aio.http")
 
 @asyncio.coroutine
 def protocol_factory(name):
-    loop = asyncio.get_event_loop()    
-    app = aiohttp.web.Application(loop=loop)
-    app['name'] = name
-    return app.make_handler()
+    loop = asyncio.get_event_loop()
+    http_app = aiohttp.web.Application(loop=loop)
+    http_app['name'] = name
+    return http_app.make_handler()
 
 
 @asyncio.coroutine
