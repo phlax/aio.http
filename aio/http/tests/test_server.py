@@ -1,11 +1,9 @@
-import os
 import asyncio
 
 import aiohttp
 
-from aio.testing import aiotest, aiofuturetest
+from aio.testing import aiofuturetest
 from aio.app.testing import AioAppTestCase
-from aio.signals import Signals
 import aio.app
 from aio.app.runner import runner
 
@@ -29,6 +27,7 @@ protocol: aio.http.tests.test_server.test_protocol_factory
 address: 0.0.0.0
 port: 7070
 """
+
 
 @asyncio.coroutine
 def test_protocol_factory(name):
