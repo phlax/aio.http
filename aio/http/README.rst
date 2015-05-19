@@ -102,4 +102,3 @@ The function should be a coroutine and is called with the name of the server
   b'Hello, world'
 
   >>> del aio.http.tests._test_http_protocol
-  >>> aio.app.clear()
