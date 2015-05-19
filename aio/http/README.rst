@@ -5,7 +5,7 @@ aio.http usage
 Configuration
 -------------
 
-Create a config defining a factory method and a root handler
+Create a server config with the aio.http.server factory and suppressing normal output
 
   >>> config = """
   ... [aio]
@@ -24,22 +24,22 @@ By default the http server will respond with a 404 as there are no routes set up
 
   >>> import asyncio
   >>> import aiohttp
-  >>> from aio.app.runner import runner  
-
+  >>> from aio.app.runner import runner
+  >>> from aio.testing import aiofuturetest
+  
   >>> def run_http_server():
   ...     yield from runner(['run'], config_string=config)
   ... 
   ...     @asyncio.coroutine
-  ...     def _test_http_server():
+  ...     def call_http_server():
   ...         result = yield from (
   ...             yield from aiohttp.request(
   ...                "GET", "http://localhost:7070")).read()  
   ...         print(result)
   ... 
-  ...     return _test_http_server
+  ...     return call_http_server
 
-  >>> from aio.testing import aiofuturetest
-  >>> aiofuturetest(run_http_server, sleep=1)()  
+  >>> aiofuturetest(run_http_server, sleep=1)()
   b'404: Not Found'
 
 The server object is accessible from the aio.app.servers[{name}] var
@@ -61,6 +61,16 @@ If you specify a protocol in the server: config, the http server will use that f
 
 The function should be a coroutine and is called with the name of the server
 
+  >>> config_with_protocol = """
+  ... [aio]
+  ... log_level = ERROR
+  ... 
+  ... [server:test]
+  ... factory: aio.http.server
+  ... protocol: aio.http.tests._example_http_protocol
+  ... port: 7070
+  ... """  
+
   >>> def http_protocol_factory(name):
   ...     loop = asyncio.get_event_loop()
   ...     webapp = aiohttp.web.Application(loop=loop)
@@ -72,33 +82,21 @@ The function should be a coroutine and is called with the name of the server
   ...     webapp.router.add_route("GET", "/", asyncio.coroutine(handle_hello_world))
   ...     return webapp.make_handler()
 
-  >>> aio.http.tests._test_http_protocol = asyncio.coroutine(http_protocol_factory)
-  
-  >>> config_with_protocol = """
-  ... [aio]
-  ... log_level = ERROR
-  ... 
-  ... [server:test]
-  ... factory: aio.http.server
-  ... protocol: aio.http.tests._test_http_protocol
-  ... port: 7070
-  ... """  
+  >>> aio.http.tests._example_http_protocol = asyncio.coroutine(http_protocol_factory)
   
   >>> def run_http_server():
   ...     yield from runner(['run'], config_string=config_with_protocol)
   ... 
   ...     @asyncio.coroutine
-  ...     def _test_http_server():
+  ...     def call_http_server():
   ...         result = yield from (
   ...             yield from aiohttp.request(
   ...                "GET", "http://localhost:7070")).read()
   ... 
   ...         print(result)
   ... 
-  ...     return _test_http_server
+  ...     return call_http_server
   
 
   >>> aiofuturetest(run_http_server, sleep=1)()  
   b'Hello, world'
-
-  >>> del aio.http.tests._test_http_protocol
