@@ -8,24 +8,17 @@ import aio.app
 from aio.app.runner import runner
 
 HTTP_CONFIG = """
-[aio:commands]
-run: aio.app.cmd.cmd_run
-
-[server:test]
-factory: aio.http.server
-address: 0.0.0.0
-port: 7070
+[server/test]
+factory = aio.http.server
+port = 7070
 """
 
 HTTP_PROTOCOL_CONFIG = """
-[aio:commands]
-run: aio.app.cmd.cmd_run
-
-[server:test]
-factory: aio.http.server
-protocol: aio.http.tests.test_server.test_protocol_factory
-address: 0.0.0.0
-port: 7070
+[server/test]
+factory = aio.http.server
+protocol = aio.http.tests.test_server.test_protocol_factory
+address = 0.0.0.0
+port = 7070
 """
 
 

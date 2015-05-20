@@ -11,7 +11,7 @@ Create a server config with the aio.http.server factory and suppressing normal o
   ... [aio]
   ... log_level = ERROR
   ... 
-  ... [server:test]
+  ... [server/test]
   ... factory: aio.http.server
   ... port: 7070
   ... """  
@@ -57,7 +57,7 @@ Lets clear the app
 Running the server with a custom protocol
 -----------------------------------------
 
-If you specify a protocol in the server: config, the http server will use that function as a protocol factory.
+If you specify a protocol in the "server/" config, the http server will use that function as a protocol factory.
 
 The function should be a coroutine and is called with the name of the server
 
@@ -65,10 +65,10 @@ The function should be a coroutine and is called with the name of the server
   ... [aio]
   ... log_level = ERROR
   ... 
-  ... [server:test]
-  ... factory: aio.http.server
-  ... protocol: aio.http.tests._example_http_protocol
-  ... port: 7070
+  ... [server/test]
+  ... factory = aio.http.server
+  ... protocol = aio.http.tests._example_http_protocol
+  ... port = 7070
   ... """  
 
   >>> def http_protocol_factory(name):

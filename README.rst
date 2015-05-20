@@ -30,7 +30,7 @@ Example configuration for a hello world server
 
 .. code:: ini
 
-	  [server:test]
+	  [server/test]
 	  factory = aio.http.server
 	  protocol = my.example.protocol_factory
 	  port = 8080
