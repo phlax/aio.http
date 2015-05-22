@@ -7,7 +7,7 @@ log = logging.getLogger("aio.http")
 
 
 @asyncio.coroutine
-def protocol_factory(name):
+def protocol(name):
     loop = asyncio.get_event_loop()
     http_app = aiohttp.web.Application(loop=loop)
     http_app['name'] = name
@@ -15,16 +15,16 @@ def protocol_factory(name):
 
 
 @asyncio.coroutine
-def server(name, protocol, address, port):
+def server(name, proto, address, port):
     loop = asyncio.get_event_loop()
-
-    if not protocol:
-        protocol = protocol_factory
-
-    protocol = yield from protocol(name)
-
+    protocol_factory = proto or protocol
     srv = yield from loop.create_server(
-        protocol,
-        address, port)
-    log.info("Server(%s) started at http://%s:%s" % (name, address, port))
+        (yield from protocol_factory(name)), address, port)
+    log.debug(
+        "Server(%s) started at http://%s:%s" % (
+            name, address or '*', port))
     return srv
+
+
+def redirect(path, permanent=False):
+    return aiohttp.web.HTTPFound(path)
