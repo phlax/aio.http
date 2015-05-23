@@ -1,68 +1,7 @@
 aio.http
-===========
+=======
 
-HTTP server for the aio_ asyncio framework
+This package has been moved to aio.http.server_ (pypi_)
 
-.. _aio: https://github.com/phlax/aio
-
-
-
-Build status
-------------
-
-.. image:: https://travis-ci.org/phlax/aio.http.svg?branch=master
-	       :target: https://travis-ci.org/phlax/aio.http
-
-
-Installation
-------------
-Install with:
-
-.. code:: bash
-
-	  pip install aio.http
-
-
-Configuration
--------------
-
-Example configuration for a hello world server
-
-.. code:: ini
-
-	  [server/test]
-	  factory = aio.http.server
-	  protocol = my.example.protocol_factory
-	  port = 8080
-
-
-And the corresponding protocol_factory
-
-.. code:: python
-
-	  import asyncio
-	  import aiohttp
-
-	  @asyncio.coroutine
-	  def protocol_factory(name):
-	      loop = asyncio.get_event_loop()
-
-	      webapp = aiohttp.web.Application(loop=loop)
-	      webapp['name'] = name
-
-	      @asyncio.coroutine
-	      def handle_hello_world(webapp):
-	          return aiohttp.web.Response(body=b"Hello, world")
-
-	      webapp.router.add_route("GET", "/", handle_hello_world)
-	      return webapp.make_handler()
-
-
-Running
--------
-
-Run with the aio command
-
-.. code:: bash
-
-	  aio run
+.. _aio.http.server: https://github.com/phlax/aio.http.server
+.. _pypi: https://pypi.python.org/pypi/aio.http.server

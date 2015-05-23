@@ -5,7 +5,7 @@ import os
 import sys
 from setuptools import setup, find_packages
 
-version = '0.0.8'
+version = '0.0.9'
 
 install_requires = [
     'setuptools',
@@ -29,14 +29,6 @@ long_description = (
     + read("README.rst")
     + '\n')
 
-try:
-    long_description += (
-        '\n'
-        + read("aio", "http", "README.rst")
-        + '\n')
-except FileNotFoundError:
-    pass
-
 
 setup(
     name='aio.http',
@@ -55,7 +47,6 @@ setup(
     url='http://github.com/phlax/aio.http',
     license='GPL',
     packages=find_packages(),
-    namespace_packages=['aio'],
     include_package_data=True,
     package_data={'': ['*.rst']},
     zip_safe=False,
